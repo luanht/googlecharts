@@ -388,10 +388,12 @@ class Gchart
       set_range_marker(range_markers)
     when Array
       range_markers.collect{|marker| set_range_marker(marker)}.join('|')
+    when String
+      range_markers
     end
     "chm=#{markers}"
   end
-
+  
   def set_range_marker(options)
     orientation = ['vertical', 'Vertical', 'V', 'v', 'R'].include?(options[:orientation]) ? 'R' : 'r'
     "#{orientation},#{options[:color]},0,#{options[:start_position]},#{options[:stop_position]}#{',1' if options[:overlaid?]}"  
